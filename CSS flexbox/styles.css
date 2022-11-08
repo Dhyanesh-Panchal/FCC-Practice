@@ -25,6 +25,20 @@
     max-width:350px;
     height:300px;
     object-fit: cover;
+    border-radius: 10px;
+}
+.gallery img:hover{
+  transition: 500ms;
+    width:100%;
+    max-width:340px;
+    height:290px;
+    padding: 10px 10px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.gallery::after{
+  content: "";
+  width:350px;
 }
 
 body {
