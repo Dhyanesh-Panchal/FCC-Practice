@@ -10,15 +10,46 @@ body {
   font-family: Open Sans, sans-serif;
 }
 
-h1 {
-  font-weight: 800;
+header h1 {
   text-align: center;
   margin: -4px 0;
 }
-
+.bold {
+  font-weight: 800;
+}
 .label {
   border: 2px solid black;
   width: 270px;
   margin: 20px auto;
   padding: 0 7px;
+}
+
+.right {
+  float: right;
+}
+
+.lg {
+  height: 10px;
+}
+.lg,
+.md {
+  background-color: black;
+  border: 0;
+}
+
+.sm-text {
+  font-size: 0.85rem;
+}
+
+.calories-info h1 {
+  margin: -5px -2px;
+  overflow: hidden;
+}
+.calories-info span {
+  font-size: 1.2em;
+  margin-top: -7px;
+}
+
+.md {
+  height: 5px;
 }
