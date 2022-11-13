@@ -1,0 +1,62 @@
+body {
+  background: #f5f6f7;
+  color: #1b1b32;
+  font-family: Helvetica;
+  margin: 0;
+}
+
+#logo {
+  width: max(100px, 18vw);
+  background-color: #0a0a23;
+  aspect-ratio: 35/4;
+  padding: 0.4em;
+}
+header {
+  display: flex;
+  background-color: #1b1b32;
+  height: 50px;
+  width: 100%;
+}
+
+h1 {
+  color: #f1be32;
+  font-size: min(5vw, 1.2em);
+}
+h1,
+h2 {
+  font-family: Verdana, sans-serif;
+}
+
+h2 {
+  border-bottom: 4px solid #dfdfe2;
+}
+nav {
+  width: 50%;
+  max-width: 300px;
+  height: 50px;
+}
+nav ul {
+  display: flex;
+  color: #f5f6f7;
+  list-style: none;
+  justify-content: space-evenly;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden; /* This will hide the text if overflow*/
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+fieldset ul {
+  list-style: none;
+}
+
+p::before {
+  content: "Question #";
+}
