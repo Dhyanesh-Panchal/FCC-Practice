@@ -2,21 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="freeCodeCamp Accessibility Quiz practice project"
     />
-    <title>FCC Accessibility Quiz</title>
+    <title>Accessibility Quiz</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header>
       <img
-        src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg"
-        alt="err"
         id="logo"
+        src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg"
       />
       <h1>HTML/CSS Quiz</h1>
       <nav>
@@ -33,26 +31,24 @@
         action="https://freecodecamp.org/practice-project/accessibility-quiz"
       >
         <section role="region" aria-labelledby="student-info">
-          <h2 id="student-info">Student info</h2>
+          <h2 id="student-info">Student Info</h2>
           <div class="info">
-            <label for="stud-name">Name: </label
-            ><input type="text" id="stud-name" name="stud-name" />
+            <label for="student-name">Name:</label>
+            <input type="text" name="student-name" id="student-name" />
           </div>
           <div class="info">
-            <label for="stud-email">Email: </label>
-            <input type="email" id="stud-email" />
+            <label for="student-email">Email:</label>
+            <input type="email" name="student-email" id="student-email" />
           </div>
           <div class="info">
-            <label for="stud-birth-date"
-              >Date of Birth:
-              <span class="sr-only" aria-hidden="true">(D.O.B)</span>
-            </label>
-            <input type="date" id="stud-birth-date" />
+            <label for="birth-date"
+              >D.O.B.<span class="sr-only">(Date of Birth)</span></label
+            >
+            <input type="date" name="birth-date" id="birth-date" />
           </div>
         </section>
-
         <section role="region" aria-labelledby="html-questions">
-          <h2 id="html-questions">Html questions</h2>
+          <h2 id="html-questions">HTML</h2>
           <div class="question-block">
             <p>1</p>
             <fieldset class="question" name="html-question-one">
@@ -100,36 +96,34 @@
             </fieldset>
           </div>
         </section>
-
         <section role="region" aria-labelledby="css-questions">
-          <h2 id="css-questions">CSS questions</h2>
+          <h2 id="css-questions">CSS</h2>
           <div class="formrow">
             <div class="question-block">
-              <label for="s1">question-1</label>
+              <label for="customer">Are you a frontend developer?</label>
             </div>
             <div class="answer">
-              <select name="s1" id="s1" required>
+              <select name="customer" id="customer" required>
                 <option value="">Select an option</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </select>
             </div>
             <div class="question-block">
-              <label for="">question</label>
+              <label for="css-questions">Do you have any questions:</label>
             </div>
             <div class="answer">
               <textarea
-                name="txt1"
-                id="txt1"
-                cols="60"
-                rows="10"
-                placeholder="example answer"
+                id="css-questions"
+                name="css-questions"
+                rows="5"
+                cols="24"
+                placeholder="Who is flexbox..."
               ></textarea>
             </div>
           </div>
         </section>
-
-        <input type="submit" value="Submit" />
+        <button type="submit">Submit</button>
       </form>
     </main>
     <footer>
