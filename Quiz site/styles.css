@@ -155,6 +155,17 @@ button {
   font-size: 23px;
   background: #d0d0d5;
   border: 3px solid #3b3b4f;
+  border-radius: 5px;
+}
+button:hover {
+  color: #d0d0d5;
+  display: block;
+  margin: 40px auto;
+  width: 40%;
+  padding: 15px;
+  font-size: 23px;
+  background: #3b3b4f;
+  border: 3px solid #3b3b4f;
 }
 
 footer {
