@@ -37,6 +37,24 @@ html {
   margin: 2px;
   border-radius: 0 0 3px 3px;
 }
+.key:hover {
+  background-color: #ffffffd2;
+  position: relative;
+  float: left;
+  width: 41px;
+  height: 175px;
+  margin: 2px;
+  border-radius: 0 0 3px 3px;
+}
+.key:active {
+  background-color: #ffffffd2;
+  position: relative;
+  float: left;
+  width: 39px;
+  height: 173px;
+  margin: 2px 3px;
+  border-radius: 0 0 3px 3px;
+}
 
 .key.black--key::after {
   background-color: #1d1e22;
