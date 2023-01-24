@@ -6,55 +6,66 @@
     - To create a component with a function, you simply write a JavaScript function that returns either JSX or null.
     - One important thing to note is that React requires your function name to begin with a capital letter. 
     
-            const MyComponent = function() {
-                // Change code below this line
-                return (
-                    <div>
-                        <p>This is some text to return.</p>
-                    </div>
-                );
-                // Change code above this line
-            }
+    ```js
+    const MyComponent = function() {
+        // Change code below this line
+        return (
+            <div>
+                <p>This is some text to return.</p>
+            </div>
+        );
+        // Change code above this line
+    }
+    ```
     **2) Class Component** :-
     -  In the following example, ``Kitten`` extends ``React.Component``:
 
-            class Kitten extends React.Component {
-                constructor(props) {
-                    super(props);
-                }
+    ```js
+    class Kitten extends React.Component {
+        constructor(props) {
+            super(props);
+        }
 
-                render() {
-                    return (
-                    <h1>Hi</h1>
-                    );
-                }
-            }
+        render() {
+            return (
+            <h1>Hi</h1>
+            );
+        }
+    }
+    ```
     - the Kitten class now has access to many useful React features, such as local state and lifecycle hooks.
     - Kitten class has a constructor defined within it that calls ``super()``. <br>It uses ``super()`` to call the constructor of the parent class, in this case ``React.Component``.
 - ## Nesting components in react:
-            return (
-                <App>
-                <Navbar />
-                <Dashboard />
-                <Footer />
-                </App>
-            )
+    ```js
+    return (
+        <App>
+        <Navbar />
+        <Dashboard />
+        <Footer />
+        </App>
+    )
+    ```
 - ## Rendering a React Component using ReactDOM.render():
     - Syntax: 
-    
-            ReactDOM.render(componentToRender, targetNode)
+    ```js
+    ReactDOM.render(componentToRender, targetNode)
+    ```
 - ## Properties (props) in components:
-            <App>
-                <Welcome user='Mark' />
-            </App>
+    ```js
+    <App>
+        <Welcome user='Mark' />
+    </App>
+    ```
 
     - here ``user`` is the property passed to the component ``Welcome``.
             
-            const Welcome = (props) => {
-                return (<h1>Hello, {props.user}!</h1>);
-            }
-    -  To pass an array to a JSX element, it must be treated as JavaScript and wrapped in curly braces.
+    ```js
+        const Welcome = (props) => {
+            return (<h1>Hello, {props.user}!</h1>);
+        }
     ```
+    -  To pass an array to a JSX element, it must be treated as JavaScript and wrapped in curly braces.
+    ```js
         <ParentComponent>
             <ChildComponent colors={["green", "blue", "red"]} />
         </ParentComponent>
@@ -88,12 +99,12 @@
     - To access props within a class component, you preface the code that you use to access it with ``this``.
      For example, if an ES6 class component has a prop called ``data``, you write ``{this.props.data}`` in JSX.
     - **Default Props**: 
-        ```
+        ```js
         MyComponent.defaultProps = { location:'Francisco' }
         ```
     - **PropTypes**:
         
-        ```
+        ```js
         MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }
         ```
         this checks that handleClick is a function and it is required field.
@@ -117,7 +128,7 @@
 - ## Updating a State:
     - React provides a method for updating component state called ``setState()``.
     - For instance, if we were storing a username in state and wanted to update it, it would look like this:
-    ```
+    ```js
     this.setState({
         username: 'Lewis'
     });
@@ -126,20 +137,20 @@
     - One common way is to explicitly bind ``this`` in the constructor so ``this`` becomes bound to the class methods when the component is initialized. You may have noticed the last challenge used ``this.handleClick = this.handleClick.bind(this)`` for its ``handleClick`` method in the constructor. Then, when you call a function like ``this.setState()`` within your class method, ``this`` refers to the class and will not be ``undefined``.
     <br><br>
     - Sometimes you might need to know the previous ``state`` when updating the ``state``. However, ``state`` updates may be asynchronous - this means React may batch multiple ``setState()`` calls into a single update. This means you can't rely on the previous value of ``this.state`` or ``this.props`` when calculating the next value. So, you should not use code like this:
-    ```
+    ```js
     this.setState({
   counter: this.state.counter + this.props.increment
     });
     ```
     - Instead, you should pass ``setState`` a function that allows you to access ``state`` and ``props``. Using a function with ``setState`` guarantees you are working with the most current values of ``state`` and ``props``. This means that the above should be rewritten as:
-    ```
+    ```js
     this.setState((state, props) => ({
         counter: state.counter + props.increment
     }));
     ```
     - Demonstration:
-    ### Visibility changer:
-    ```
+    > ### Visibility changer:
+    ```js
     class MyComponent extends React.Component {
         constructor(props) {
             super(props);
@@ -175,8 +186,8 @@
         }
     }
     ```
-    ### Counter:
-    ```
+    > ### Counter:
+    ```js
     class Counter extends React.Component {
         constructor(props) {
             super(props);
@@ -212,8 +223,8 @@
         }
     };
     ```
-    ### Input Controller
-    ```
+    > ### Input Controller
+    ```js
     class ControlledInput extends React.Component {
         constructor(props) {
             super(props);
@@ -245,4 +256,116 @@
         }
     };
     ```
+    > ### Controlled From
+    ```js
+    class MyForm extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+            input: '',
+            submit: ''
+            };
+            this.handleChange = this.handleChange.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this);
+        }
+        handleChange(event) {
+            this.setState({
+            input: event.target.value,
+            submit: ''
+            });
+        }
+        handleSubmit(event) {
+            // Change code below this line
+            event.preventDefault();// This will prevent the default form submit behavior which will refresh the web page. 
+            this.setState(state=>({
+            input: state.input,
+            submit: state.input
+            }));
+            // Change code above this line
+        }
+        render() {
+            return (
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                
+                {/* Change code below this line */}
+                <input value={this.state.input} onChange={this.handleChange}/>
+                {/* Change code above this line */}
+                <button type='submit'>Submit!</button>
+                </form>
+                {/* Change code below this line */}
+                <h1>{this.state.submit}</h1>
+                {/* Change code above this line */}
+            </div>
+            );
+        }
+    }
+    ```
+- ## Passing a part of State to the child component:
+    - **Unidirectional Data Flow**: State flows in one direction down the tree of your application's components, from the stateful parent component to child components. The child components only receive the state data they need. 
+    - Complex stateful apps can be broken down into just a few, or maybe a single, stateful component. The rest of your components simply receive state from the parent as props, and render a UI from that state. It begins to create a separation where state management is handled in one part of code and UI rendering in another. 
+    - This principle of separating state logic from UI logic is one of React's key principles. When it's used correctly, it makes the design of complex, stateful applications much easier to manage.
+- ## Passing Callback as prop:
+    - You pass methods to a child just like a regular prop. It's assigned a name and you have access to that method name under ``this.props`` in the child component.
+    
+    Example:
+    ```js
+    class MyApp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                inputValue: ''
+                }
+                this.handleChange = this.handleChange.bind(this);
+            }
+            handleChange(event) {
+                this.setState({
+                inputValue: event.target.value
+                });
+            }
+            render() {
+                return (
+                <div>
+                    { /* Change code below this line */ }
+                    <GetInput input={this.state.inputValue} handleChange={this.handleChange}/>
+                    <RenderInput input={this.state.inputValue}/>
+                    { /* Change code above this line */ }
+                </div>
+                );
+            }
+        };
+
+    class GetInput extends React.Component {
+            constructor(props) {
+                super(props);
+            }
+            render() {
+                return (
+                <div>
+                    <h3>Get Input:</h3>
+                    <input
+                    value={this.props.input}
+                    onChange={this.props.handleChange}/>
+                </div>
+                );
+            }
+    };
+
+    class RenderInput extends React.Component {
+            constructor(props) {
+                super(props);
+            }
+            render() {
+                return (
+                <div>
+                    <h3>Input Render:</h3>
+                    <p>{this.props.input}</p>
+                </div>
+                );
+            }
+    };
+    ```
+    <br><br>
+- ## Lifecycle Method :
+
 
