@@ -1,0 +1,327 @@
+<head>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+    <script>
+        // Add your code below this line
+        d3.select('body').append('h1').text('Learning D3');
+      // Add your code above this line
+    </script>
+</body>
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+<body>
+    <ul>
+        <li>Example</li>
+        <li>Example</li>
+        <li>Example</li>
+    </ul>
+    <script>
+        // Add your code below this line
+
+        d3.selectAll('li').text('list item')
+
+      // Add your code above this line
+    </script>
+</body>
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+<body>
+    <script>
+        const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+        // Add your code below this line
+        d3.select('body').selectAll('h2').data(dataset).enter().append('h2').text('New Title')
+
+
+      // Add your code above this line
+    </script>
+</body>
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+<body>
+    <script>
+        const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+        d3.select("body").selectAll("h2")
+            .data(dataset)
+            .enter()
+            .append("h2")
+            // Add your code below this line
+
+            .text(d => `${d} USD`);
+
+        // Add your code above this line
+    </script>
+</body>
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+<body>
+    <script>
+      const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+  
+      d3.select("body").selectAll("h2")
+        .data(dataset)
+        .enter()
+        .append("h2")
+        .text((d) => (d + " USD"))
+        // Add your code below this line
+        d3.select('body').style('font-family','verdana')
+  
+  
+        // Add your code above this line
+    </script>
+  </body>
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+<body>
+    <script>
+      const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+  
+      d3.select("body").selectAll("h2")
+        .data(dataset)
+        .enter()
+        .append("h2")
+        .text((d) => (d + " USD"))
+        .style('color',(d)=>{if(d<20){return 'red'}else{return 'green'}})
+        // Add your code below this line
+  
+  
+  
+        // Add your code above this line
+    </script>
+  </body>
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+<style>
+    .bar {
+      width: 25px;
+      height: 100px;
+      display: inline-block;
+      background-color: blue;
+    }
+  </style>
+  <body>
+    <script>
+      const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+  
+      d3.select("body").selectAll("div")
+        .data(dataset)
+        .enter()
+        .append("div")
+        // Add your code below this line
+        .attr('class','bar')
+  
+  
+        // Add your code above this line
+    </script>
+  </body>
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+<style>
+    .bar {
+      width: 25px;
+      height: 100px;
+      display: inline-block;
+      background-color: blue;
+    }
+  </style>
+  <body>
+    <script>
+      const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+  
+      d3.select("body").selectAll("div")
+        .data(dataset)
+        .enter()
+        .append("div")
+        .attr("class", "bar")
+        // Add your code below this line
+        .style('height',(d)=>`${d}px`)
+  
+  
+        // Add your code above this line
+    </script>
+  </body>
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+<style>
+    .bar {
+      width: 25px;
+      height: 100px;
+      /* Add your code below this line */
+      margin:2px;
+      
+      /* Add your code above this line */
+      display: inline-block;
+      background-color: blue;
+    }
+  </style>
+  <body>
+    <script>
+      const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+  
+      d3.select("body").selectAll("div")
+        .data(dataset)
+        .enter()
+        .append("div")
+        .attr("class", "bar")
+        .style("height", (d) => (d*10 + "px")) // Change this line
+    </script>
+  </body>
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+<style>
+    svg {
+      background-color: pink;
+    }
+  </style>
+  <body>
+    <script>
+      const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+  
+      const w = 500;
+      const h = 100;
+  
+      const svg = d3.select("body")
+                    // Add your code below this line
+            .append('svg')
+            .style('width',w)
+            .style('height',h)
+  
+  
+                    // Add your code above this line
+    </script>
+  </body>
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+<body>
+    <script>
+      const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+  
+      const w = 500;
+      const h = 100;
+  
+      const svg = d3.select("body")
+                    .append("svg")
+                    .attr("width", w)
+                    .attr("height", h)
+                    // Add your code below this line
+                    .append('rect')
+                    .attr('width',25)
+                    .attr('height',100)
+                    .attr('x',0)
+                    .attr('y',0)
+  
+  
+  
+                    // Add your code above this line
+    </script>
+  </body>
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    const w = 500;
+    const h = 100;
+
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+    svg.selectAll("rect")
+       // Add your code below this line
+        .data(dataset)
+        .enter()
+        .append('rect')
+
+
+       // Add your code above this line
+       .attr("x", 0)
+       .attr("y", 0)
+       .attr("width", 25)
+       .attr("height", 100);
+  </script>
+</body>
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    const w = 500;
+    const h = 100;
+
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => {
+         // Add your code below this line
+
+          return i*30
+
+         // Add your code above this line
+       })
+       .attr("y", 0)
+       .attr("width", 25)
+       .attr("height", 100);
+  </script>
+</body>
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    const w = 500;
+    const h = 100;
+
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", 0)
+       .attr("width", 25)
+       .attr("height", (d, i) => {
+         // Add your code below this line
+
+          return d*3;
+
+         // Add your code above this line
+       });
+  </script>
+</body>
+
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
