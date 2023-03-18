@@ -1,7 +1,9 @@
 const passport = require('passport');
 const { ObjectID } = require('mongodb');
 const LocalStrategy = require('passport-local');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const GithubStrategy = require('passport-github');
+require('dotenv').config();
 
 
 module.exports = (app, myDatabase) => {
@@ -35,4 +37,13 @@ module.exports = (app, myDatabase) => {
             }
         })
     }))
+
+    passport.use(new GithubStrategy({
+        clientID: process.env.GITHUB_CLIENT_ID,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        callbackURL: 'https://boilerplate-advancednode.dhyaneshpanchal.repl.co/auth/github/callback'
+    },
+        (accessToken, refreshToken, profile, cb) => {
+            console.log(profile);
+        }))
 }
