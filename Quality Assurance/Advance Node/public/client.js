@@ -9,13 +9,18 @@ $(document).ready(function () {
     $('#messages').append($('<li>').html(`${message}`))
   })
 
+  socket.on('chat message', data => {
+    // console.log('listening the emit request of chat message')
+    $('#messages').append($('<li>').html(`<b>${data.username}</b> :${data.message}`))
+  })
+
   // socket.on('disconnect', () => {
   //   console.log('Mitra disconnected');
   // })
   // Form submittion with new message in field with id 'm'
   $('form').submit(function () {
-    var messageToSend = $('#m').val();
-
+    let messageToSend = $('#m').val();
+    socket.emit('chat message', messageToSend);
     $('#m').val('');
     return false; // prevent form submit from refreshing page
   });
