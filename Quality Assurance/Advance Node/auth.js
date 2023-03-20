@@ -13,6 +13,7 @@ module.exports = (app, myDatabase) => {
 
     passport.deserializeUser((id, done) => {
         myDatabase.findOne({ _id: new ObjectID(id) }, (err, doc) => {
+            if (err) return console.error(err);
             done(null, doc);
         })
         // done(null, null);
@@ -28,11 +29,13 @@ module.exports = (app, myDatabase) => {
                 console.log('User dont exist');
                 return done(null, false);
             }
+            // else if (password != user.password)
             else if (!bcrypt.compareSync(password, user.password)) {
                 console.log('Incorrect password');
                 return done(null, false);
             }
             else {
+                console.log('user Authenticated')
                 return done(null, user);
             }
         })
@@ -41,9 +44,35 @@ module.exports = (app, myDatabase) => {
     passport.use(new GithubStrategy({
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: 'https://boilerplate-advancednode.dhyaneshpanchal.repl.co/auth/github/callback'
+        callbackURL: 'http://localhost:3000/auth/github/callback'
     },
         (accessToken, refreshToken, profile, cb) => {
-            console.log(profile);
+            myDatabase.findOneAndUpdate(
+                { id: profile.id },
+                {
+                    $setOnInsert: {
+                        id: profile.id,
+                        username: profile.username,
+                        name: profile.displayName || '',
+                        photo: profile.photos[ 0 ].value || '',
+                        email: Array.isArray(profile.emails) ? profile.emails[ 0 ].value : 'No public email',
+                        created_on: new Date(),
+                        provider: profile.provider || ''
+                    },
+                    $set: {
+                        last_login: new Date()
+                    },
+                    $inc: {
+                        login_count: 1
+                    }
+                },
+                {
+                    upsert: true,
+                    new: true
+                },
+                (err, data) => {
+                    return cb()
+                }
+            )
         }))
 }

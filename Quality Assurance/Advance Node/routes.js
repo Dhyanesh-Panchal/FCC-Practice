@@ -3,10 +3,12 @@ const bcrypt = require('bcrypt');
 
 
 const ensureAuthenticated = (req, res, next) => {
+    console.log(req.isAuthenticated());
     if (req.isAuthenticated()) {
         return next();
     }
     else {
+        console.log('Failed in ensureAuthenticated')
         res.redirect('/')
     }
 }
@@ -19,7 +21,8 @@ module.exports = (app, myDatabase) => {
 
     app.route('/login').post(passport.authenticate('local', { failureRedirect: '/' }), (req, res) => {
         console.log(`User ${req.user.username} is Authenticated!`);
-        res.redirect('/profile');
+        console.log(req.isAuthenticated());
+        res.redirect('/chat');
     })
 
     app.route('/register').post(async (req, res, next) => {
@@ -47,12 +50,22 @@ module.exports = (app, myDatabase) => {
     },
         passport.authenticate('local', { failureRedirect: '/' }),
         (req, res) => {
-            res.redirect('/profile');
+
+            res.redirect('/chat');
         }
     )
 
-    app.route('/profile').get(ensureAuthenticated, (req, res) => {
+    app.get('/profile', (req, res, next) => {
+        console.log('before ensureAuth: ', req.isAuthenticated());
+        return next();
+    }, ensureAuthenticated, (req, res) => {
+        console.log('Rendering Profile');
         res.render('profile', { username: req.user.username });
+    })
+
+    app.route('/chat').get(ensureAuthenticated, (req, res) => {
+        console.log('rendering chat');
+        res.render('chat', { user: req.user })
     })
 
     app.route('/logout').get((req, res) => {
@@ -62,6 +75,7 @@ module.exports = (app, myDatabase) => {
 
     app.route('/auth/github').get(passport.authenticate('github'));
     app.route('/auth/github/callback').get(passport.authenticate('github', { failureRedirect: '/' }), (req, res) => {
-        res.redirect('/profile');
+        req.session.user_id = req.user.id;
+        res.redirect('/chat');
     })
 }
