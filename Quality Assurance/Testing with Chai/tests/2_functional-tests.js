@@ -67,10 +67,10 @@ suite('Functional Tests', function () {
 });
 
 const Browser = require('zombie');
-Browser.site = 'https://boilerplate-mochachai.dhyaneshpanchal.repl.co';
+Browser.site = 'http://localhost:4000/';
 
 suite('Functional Tests with Zombie.js', function () {
-  // this.timeout(5000);
+  this.timeout(5000);
   const browser = new Browser();
   suiteSetup(done => {
     return browser.visit('/', done);
@@ -96,6 +96,7 @@ suite('Functional Tests with Zombie.js', function () {
           done();
         });
       });
+
     });
     // #6
     test('Submit the surname "Vespucci" in the HTML form', function (done) {

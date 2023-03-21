@@ -82,7 +82,7 @@ app.get('/_api/get-tests', cors(), function (req, res, next) {
   });
 
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 app.listen(port, function () {
   console.log("Listening on port " + port);
   console.log('Running Tests...');
@@ -94,7 +94,7 @@ app.listen(port, function () {
       console.log('Tests are not valid:');
       console.log(error);
     }
-  }, 1500);
+  }, 4500);
 });
 
 
@@ -113,7 +113,7 @@ function testFilter(tests, type, n) {
       out = tests;
   }
   if (n !== undefined) {
-    return out[n] || out;
+    return out[ n ] || out;
   }
   return out;
 }
